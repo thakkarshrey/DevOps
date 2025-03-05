@@ -1,0 +1,32 @@
+Vagrant.configure("2") do |config|
+
+  # Web01 VM
+  config.vm.define "web01" do |web|
+    web.vm.box = "ubuntu/focal64"       # Ubuntu 20.04 box
+    web.vm.hostname = "web01"
+    web.vm.network "private_network", ip: "192.168.56.10"
+  end
+
+  # Web02 VM
+  config.vm.define "web02" do |web|
+    web.vm.box = "ubuntu/focal64"       # Ubuntu 20.04 box
+    web.vm.hostname = "web02"
+    web.vm.network "private_network", ip: "192.168.56.11"
+  end
+
+  # DB01 VM
+  config.vm.define "db01" do |db|
+    db.vm.box = "centos/7"             # CentOS 7 box
+    db.vm.hostname = "db01"
+    db.vm.network "private_network", ip: "192.168.56.12"
+    
+    # Provisioning for db01 (example: update system and install MariaDB)
+    db.vm.provision "shell", inline: <<-SHELL
+      echo "Provisioning db01..."
+      sudo yum install -y mariadb-server wget unzip
+      sudo systemctl enable mariadb
+      sudo systemctl start mariadb
+    SHELL
+  end
+
+end
