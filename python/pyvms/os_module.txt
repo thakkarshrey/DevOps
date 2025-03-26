@@ -1,0 +1,11 @@
+--> ssh into your vagrant linux machine and run python3. The python interpretor will start and now you can write your python code here.
+
+--> Now if you want to write your linux commands from python you wont be able to do it. Suppose if you run "ls" then it will throw error because ls is a linux command and not a python command.
+
+--> If you want to run linux commands you need to "import os" inside python interpretor.
+
+--> Then; "os.system("ls")"
+
+--> It will execute the command and return an exit code. If the exit code is 0 then the command is successfully executed. If it is a random number then the command has failed.
+
+--> We will write a python script now using os module. Check the py_scripts folder to refer the scripts.
